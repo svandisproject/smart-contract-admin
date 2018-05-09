@@ -1,1 +1,26 @@
+<section class="hero is-medium is-info is-bold main-section">
+  <div class="navigation">
+    <ul>
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li>
+        <a routerLink="/whitelist">Whitelist</a>
+      </li>
+    </ul>
+  </div>
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title is-1">
+        Svandis Dapp
+      </h1>
+      <h2 class="title">
+        You have <span class="is-medium has-underline">{{balance}}</span> SVN
+      </h2>
+      <h2 class="title">
+        The contract has <span class="is-medium has-underline">{{contractBalance}}</span> SVN
+      </h2>
+    </div>
+  </div>
+</section>
 <router-outlet></router-outlet>
