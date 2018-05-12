@@ -1,151 +1,150 @@
 <div class="container">
-  <h1 class="title is-4 is-info help">{{status}}</h1>
-  <h1 class="title">Check Whitelist</h1>
-  <form #checkWhitelistedForm="ngForm">
-    <div class="field">
-      <label class="label">Address</label>
-      <p class="control">
-        <input
-          [(ngModel)]="ethAddressCheck"
-          name="ethAddressCheck"
-          class="input"
-          type="text"
-          placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
-          name="ethAddressCheck"
-          required
-          #ethAddressCheckModel="ngModel"
-        >
-      </p>
-      <div *ngIf="ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
-           class="help is-danger">
-          <p [hidden]="!ethAddressCheckModel.errors.required">
-            This field is required
-          </p>
-      </div>
-      <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
-           class="help is-danger">
-          <p [hidden]="canBeNumber(ethAddressCheck)">
-            Must be a number
-          </p>
-      </div>
-    </div>
-    <div class="field is-grouped">
-      <p class="control">
-        <button
-          [disabled]="!checkWhitelistedForm.valid"
-          (click)="checkWhitelisted()"
-          class="button is-primary">
-          Send
-        </button>
-      </p>
-    </div>
-  </form>
-  <h1 class="title">Add to Whitelist</h1>
-  <form #addToWhitelistForm="ngForm">
-    <div class="field">
-      <label class="label">Address</label>
-      <p class="control">
-        <input
-          [(ngModel)]="ethAddressAdd"
-          name="ethAddressAdd"
-          class="input"
-          type="text"
-          placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
-          name="ethAddressAdd"
-          required
-          #ethAddressAddModel="ngModel"
-        >
-      </p>
-      <div *ngIf="ethAddressAddModel.errors && (ethAddressAddModel.dirty || ethAddressAddModel.touched)"
-           class="help is-danger">
-          <p [hidden]="!ethAddressAddModel.errors.required">
-            This field is required
-          </p>
-      </div>
-      <div *ngIf="!ethAddressAddModel.errors && (ethAddressAddModel.dirty || ethAddressAddModel.touched)"
-           class="help is-danger">
-          <p [hidden]="canBeNumber(ethAddressAdd)">
-            Must be a number
-          </p>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label">Amount</label>
-      <p class="control">
-        <input
-          [(ngModel)]="whitelistAmount"
-          name="whitelistAmount"
-          class="input"
-          type="text"
-          placeholder="550"
-          name="whitelistAmount"
-          required
-          #whitelistAmountModel="ngModel"
-        >
-      </p>
-      <div *ngIf="whitelistAmountModel.errors && (whitelistAmountModel.dirty || whitelistAmountModel.touched)"
-           class="help is-danger">
-          <p [hidden]="!whitelistAmountModel.errors.required">
-            This field is required
-          </p>
-      </div>
-      <div *ngIf="!whitelistAmountModel.errors && (whitelistAmountModel.dirty || whitelistAmountModel.touched)"
-           class="help is-danger">
-          <p [hidden]="canBeNumber(whitelistAmount)">
-            Must be a number
-          </p>
-      </div>
-    </div>
-    <div class="field is-grouped">
-      <p class="control">
-        <button
-          [disabled]="!addToWhitelistForm.valid"
-          (click)="addToWhitelist()"
-          class="button is-primary">
-          Send
-        </button>
-      </p>
-    </div>
-  </form>
-  <h1 class="title">Remove from Whitelist</h1>
-  <form #removeFromWhitelistForm="ngForm">
-    <div class="field">
-      <label class="label">Address</label>
-      <p class="control">
-        <input
-          [(ngModel)]="ethAddressRemove"
-          name="ethAddressRemove"
-          class="input"
-          type="text"
-          placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
-          name="ethAddressRemove"
-          required
-          #ethAddressRemoveModel="ngModel"
-        >
-      </p>
-      <div *ngIf="ethAddressRemoveModel.errors && (ethAddressRemoveModel.dirty || ethAddressRemoveModel.touched)"
-           class="help is-danger">
-          <p [hidden]="!ethAddressRemoveModel.errors.required">
-            This field is required
-          </p>
-      </div>
-      <div *ngIf="!ethAddressRemoveModel.errors && (ethAddressRemoveModel.dirty || ethAddressRemoveModel.touched)"
-           class="help is-danger">
-          <p [hidden]="canBeNumber(ethAddressRemove)">
-            Must be a number
-          </p>
-      </div>
-    </div>
-    <div class="field is-grouped">
-      <p class="control">
-        <button
-          [disabled]="!removeFromWhitelistForm.valid"
-          (click)="removeFromWhitelist()"
-          class="button is-primary">
-          Send
-        </button>
-      </p>
-    </div>
-  </form>
-
+    <h1 class="title is-4 is-info help">{{status}}</h1>
+    <h1 class="title">Check Whitelist</h1>
+    <form #checkWhitelistedForm="ngForm">
+        <div class="field">
+            <label class="label">Address</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="ethAddressCheck"
+                    name="ethAddressCheck"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    name="ethAddressCheck"
+                    required
+                    #ethAddressCheckModel="ngModel"
+                >
+            </p>
+            <div *ngIf="ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!ethAddressCheckModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(ethAddressCheck)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!checkWhitelistedForm.valid"
+                    (click)="checkWhitelisted()"
+                    class="button is-primary">
+                        Send
+                </button>
+            </p>
+        </div>
+    </form>
+    <h1 class="title">Add to Whitelist</h1>
+    <form #addToWhitelistForm="ngForm">
+        <div class="field">
+            <label class="label">Address</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="ethAddressAdd"
+                    name="ethAddressAdd"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    name="ethAddressAdd"
+                    required
+                    #ethAddressAddModel="ngModel"
+                >
+            </p>
+            <div *ngIf="ethAddressAddModel.errors && (ethAddressAddModel.dirty || ethAddressAddModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!ethAddressAddModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!ethAddressAddModel.errors && (ethAddressAddModel.dirty || ethAddressAddModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(ethAddressAdd)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Amount</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="whitelistAmount"
+                    name="whitelistAmount"
+                    class="input"
+                    type="text"
+                    placeholder="550"
+                    name="whitelistAmount"
+                    required
+                    #whitelistAmountModel="ngModel"
+                >
+            </p>
+            <div *ngIf="whitelistAmountModel.errors && (whitelistAmountModel.dirty || whitelistAmountModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!whitelistAmountModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!whitelistAmountModel.errors && (whitelistAmountModel.dirty || whitelistAmountModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(whitelistAmount)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!addToWhitelistForm.valid"
+                    (click)="addToWhitelist()"
+                    class="button is-primary">
+                    Send
+                </button>
+            </p>
+        </div>
+    </form>
+    <h1 class="title">Remove from Whitelist</h1>
+    <form #removeFromWhitelistForm="ngForm">
+        <div class="field">
+            <label class="label">Address</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="ethAddressRemove"
+                    name="ethAddressRemove"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    name="ethAddressRemove"
+                    required
+                    #ethAddressRemoveModel="ngModel"
+                >
+            </p>
+            <div *ngIf="ethAddressRemoveModel.errors && (ethAddressRemoveModel.dirty || ethAddressRemoveModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!ethAddressRemoveModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!ethAddressRemoveModel.errors && (ethAddressRemoveModel.dirty || ethAddressRemoveModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(ethAddressRemove)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!removeFromWhitelistForm.valid"
+                    (click)="removeFromWhitelist()"
+                    class="button is-primary">
+                    Send
+                </button>
+            </p>
+        </div>
+    </form>
  </div>

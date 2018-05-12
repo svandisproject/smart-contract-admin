@@ -1,43 +1,43 @@
 <div class="container">
-  <h1 class="title is-4 is-info help">{{status}}</h1>
-  <h1 class="title">Get balance by address</h1>
-  <form #getBalanceForm="ngForm">
-    <div class="field">
-      <label class="label">Address</label>
-      <p class="control">
-        <input
-          [(ngModel)]="ethAddressCheck"
-          name="ethAddressCheck"
-          class="input"
-          type="text"
-          placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
-          name="ethAddressCheck"
-          required
-          #ethAddressCheckModel="ngModel"
-        >
-      </p>
-      <div *ngIf="ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
-           class="help is-danger">
-          <p [hidden]="!ethAddressCheckModel.errors.required">
-            This field is required
-          </p>
-      </div>
-      <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
-           class="help is-danger">
-          <p [hidden]="canBeNumber(ethAddressCheck)">
-            Must be a number
-          </p>
-      </div>
-    </div>
-    <div class="field is-grouped">
-      <p class="control">
-        <button
-          [disabled]="!getBalanceForm.valid"
-          (click)="getBalance()"
-          class="button is-primary">
-          Send
-        </button>
-      </p>
-    </div>
-  </form>
+    <h1 class="title is-4 is-info help">{{status}}</h1>
+    <h1 class="title">Get balance by address</h1>
+    <form #getBalanceForm="ngForm">
+        <div class="field">
+            <label class="label">Address</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="ethAddressCheck"
+                    name="ethAddressCheck"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    name="ethAddressCheck"
+                    required
+                    #ethAddressCheckModel="ngModel"
+                >
+            </p>
+            <div *ngIf="ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!ethAddressCheckModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(ethAddressCheck)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!getBalanceForm.valid"
+                    (click)="getBalance()"
+                    class="button is-primary">
+                    Send
+                </button>
+            </p>
+        </div>
+    </form>
 </div>

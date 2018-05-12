@@ -7,8 +7,8 @@ import { canBeNumber } from '../../../util/validation';
 declare var window: any;
 
 @Component({
-  selector: 'main-component',
-  templateUrl: './main.component.html'
+    selector: 'main-component',
+    templateUrl: './main.component.html'
 })
 export class MainComponent {
   

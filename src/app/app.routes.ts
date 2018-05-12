@@ -4,11 +4,11 @@ import { WhitelistComponent } from './routes/whitelist/whitelist.component';
 import { BalancesComponent } from './routes/balances/balances.component';
 
 export const appRoutes: Route[] = [
-  { path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  { path: 'home', component: MainComponent },
-  { path: 'whitelist', component: WhitelistComponent },
-  { path: 'balances', component: BalancesComponent },
+    { path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+    },
+    { path: 'home', component: MainComponent },
+    { path: 'whitelist', component: WhitelistComponent },
+    { path: 'balances', component: BalancesComponent },
 ];
