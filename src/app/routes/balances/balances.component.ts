@@ -12,10 +12,10 @@ declare var window: any;
     styleUrls: ['./balances.component.css']
 })
 export class BalancesComponent {
-    account: any;
-    accounts: any;
+    account: string;
+    accounts: Array<string>;
 
-    ethAddressCheck: any;
+    ethAddressCheck: string;
     balance: number;
     contractBalance: number;
     status: string;

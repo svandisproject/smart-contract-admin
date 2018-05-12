@@ -13,9 +13,8 @@ declare var window: any;
 })
 export class WhitelistComponent {
 
-    // TODO add proper types these variables
-    account: any;
-    accounts: any;
+    account: string;
+    accounts: Array<string>;
 
     balance: number;
     contractBalance: number;

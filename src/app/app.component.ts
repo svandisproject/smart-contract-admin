@@ -10,8 +10,8 @@ declare var window: any;
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    account: any;
-    accounts: any;
+    account: string;
+    accounts: Array<string>;
 
     balance: number;
     contractBalance: number;
