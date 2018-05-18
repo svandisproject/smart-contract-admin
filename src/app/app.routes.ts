@@ -3,7 +3,7 @@ import { MainComponent } from './routes/main/main.component';
 import { WhitelistComponent } from './routes/whitelist/whitelist.component';
 import { BalancesComponent } from './routes/balances/balances.component';
 import { SetRatesComponent } from './routes/setRates/setRates.component';
-import { SwitchTiersComponent } from './routes/setRates/switchTiers.component';
+import { SwitchTiersComponent } from './routes/switchTiers/switchTiers.component';
 
 export const appRoutes: Route[] = [
     { path: '',
