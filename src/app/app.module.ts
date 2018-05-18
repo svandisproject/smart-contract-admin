@@ -8,6 +8,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './routes/main/main.component';
 import { WhitelistComponent } from './routes/whitelist/whitelist.component';
 import { BalancesComponent } from './routes/balances/balances.component';
+import { SetRatesComponent } from './routes/setRates/setRates.component';
+import { SwitchTiersComponent } from './routes/switchTiers/switchTiers.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import {SvandisSaleService, Web3Service} from '../services/services'
@@ -32,6 +34,8 @@ const SERVICES = [
         MainComponent,
         WhitelistComponent,
         BalancesComponent,
+        SetRatesComponent,
+        SwitchTiersComponent,
         NavigationComponent,
         HeaderComponent
     ],

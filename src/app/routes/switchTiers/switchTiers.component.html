@@ -1,0 +1,43 @@
+<div class="container">
+    <h1 class="title is-4 is-info help">{{status}}</h1>
+    <h1 class="title">Switch Tiers</h1>
+    <form #switchTiersForm="ngForm">
+        <div class="field">
+            <label class="label">Tier</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="tier"
+                    name="tier"
+                    class="input"
+                    type="text"
+                    placeholder="1 or 2"
+                    name="tier1Rate"
+                    required
+                    #tier1RateModel="ngModel"
+                >
+            </p>
+            <div *ngIf="tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!tier1RateModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(tier1Rate)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!setRatesForm.valid"
+                    (click)="setTierRates()"
+                    class="button is-primary">
+                        Send
+                </button>
+            </p>
+        </div>
+    </form>
+ </div>

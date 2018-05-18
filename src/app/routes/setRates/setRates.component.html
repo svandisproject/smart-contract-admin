@@ -1,0 +1,70 @@
+<div class="container">
+    <h1 class="title is-4 is-info help">{{status}}</h1>
+    <h1 class="title">Set Tier Rates (can be done just once, cannot be undone)</h1>
+    <form #setRatesForm="ngForm">
+        <div class="field">
+            <label class="label">Tier 1 Rate</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="tier1Rate"
+                    name="tier1Rate"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    name="tier1Rate"
+                    required
+                    #tier1RateModel="ngModel"
+                >
+            </p>
+            <div *ngIf="tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!tier1RateModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(tier1Rate)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Tier 2 Rate</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="tier2Rate"
+                    name="tier2Rate"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    name="tier2Rate"
+                    required
+                    #tier2RateModel="ngModel"
+                >
+            </p>
+            <div *ngIf="tier2RateModel.errors && (tier2RateModel.dirty || tier2RateModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!tier2RateModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!tier2RateModel.errors && (tier2RateModel.dirty || tier2RateModel.touched)"
+                class="help is-danger">
+                <p [hidden]="canBeNumber(tier2Rate)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!setRatesForm.valid"
+                    (click)="setTierRates()"
+                    class="button is-primary">
+                        Send
+                </button>
+            </p>
+        </div>
+    </form>
+ </div>

@@ -136,4 +136,50 @@ export class SvandisSaleService {
             });
         })
     }
+
+    setTiers(tier1Rate, tier2Rate, account): Observable<any>{
+
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+            .deployed()
+            .then(instance => {
+                meta = instance;
+                return meta.setTiers(tier1Rate, tier2Rate, {
+                    from: account
+                });
+            })
+            .then(() => {
+                observer.next()
+                observer.complete()
+            })
+            .catch(e => {
+                console.log(e);
+                observer.error(e)
+            });
+        })
+    }
+
+    switchTiers(tier, account): Observable<any>{
+
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+            .deployed()
+            .then(instance => {
+                meta = instance;
+                return meta.switchTiers(tier, {
+                    from: account
+                });
+            })
+            .then(() => {
+                observer.next()
+                observer.complete()
+            })
+            .catch(e => {
+                console.log(e);
+                observer.error(e)
+            });
+        })
+    }
 }
