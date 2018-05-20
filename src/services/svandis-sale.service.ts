@@ -33,6 +33,7 @@ export class SvandisSaleService {
                 });
             })
             .then(value => {
+                value = value/(Math.pow(10,18));
                 observer.next(value)
                 observer.complete()
             })
@@ -51,13 +52,13 @@ export class SvandisSaleService {
       		    .deployed()
       		    .then(instance => {
       		        meta = instance;
-                console.log(meta);
                 //we use call here so the call doesn't try and write, making it free
       		    return meta.balanceOf.call(account, {
       		        from: account
       		    });
       		})
       		.then(value => {
+              value = value/(Math.pow(10,18));
       		    observer.next(value)
       		    observer.complete()
       		})
@@ -69,7 +70,7 @@ export class SvandisSaleService {
     }
 
     addToWhitelist(ethAddress, amount, account): Observable<any>{
-
+        amount = amount*(Math.pow(10,18));
   	    let meta;
   	    return Observable.create(observer => {
   	        this.Sale
@@ -127,6 +128,7 @@ export class SvandisSaleService {
                 });
             })
             .then((value) => {
+                value = value/(Math.pow(10,18));
                 observer.next(value)
                 observer.complete()
             })

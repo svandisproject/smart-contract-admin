@@ -4,6 +4,8 @@ import {Web3Service, SvandisSaleService} from '../../../services/services'
 
 import { canBeNumber } from '../../../util/validation';
 
+import * as XLSX from 'xlsx';
+
 declare var window: any;
 
 @Component({
@@ -22,14 +24,25 @@ export class WhitelistComponent {
     ethAddressAdd: string;
     ethAddressRemove: string;
     ethAddressCheck: string;
+
     status: string;
+    bulkImport: any = null;
+    importedRows: Array<any> = [];
+    importRowAddress: string = 'address';
+    importRowAmount: string = 'amount';
     canBeNumber = canBeNumber;
+
+    web3: any;
+
+    wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
+    fileName: string = 'SheetJS.xlsx';
 
     constructor(
         private _ngZone: NgZone,
         private web3Service: Web3Service,
         private svandisSaleService: SvandisSaleService,
         ) {
+        this.web3 = web3Service.web3;
         this.onReady();
     }
 
@@ -69,7 +82,44 @@ export class WhitelistComponent {
 
         this.svandisSaleService.checkWhitelisted(this.ethAddressCheck, this.account)
             .subscribe((d) =>{
-                this.setStatus('Account whitelist amount is ' + d.toNumber());
+                this.setStatus('Account whitelist amount is ' + d);
             }, e => this.setStatus('Error checking whitelist; see log.'))
     };
+
+    handleFileInput(evt: any) {
+        this.bulkImport = evt.target;
+        const target: DataTransfer = <DataTransfer>(this.bulkImport);
+        if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+        const reader: FileReader = new FileReader();
+        reader.onload = (e: any) => {
+            
+            /* read workbook */
+            const bstr: string = e.target.result;
+            const wb: XLSX.WorkBook = XLSX.read(bstr, {type: 'binary'});
+
+            /* grab first sheet */
+            const wsname: string = wb.SheetNames[0];
+            const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+            this.importedRows = XLSX.utils.sheet_to_json(ws);
+            
+
+        };
+        reader.readAsBinaryString(target.files[0]);
+    }
+
+    export() {
+        let status = '';
+        for(let row of this.importedRows){
+            if (!row[this.importRowAddress] || !row[this.importRowAmount]) {
+                return this.setStatus('Incorrect header names.');
+            }
+            if(this.web3.utils.isAddress(row[this.importRowAddress]) && !isNaN(row[this.importRowAmount])) {
+                this.svandisSaleService.addToWhitelist(row[this.importRowAddress], row[this.importRowAmount], this.account)
+                .subscribe(() =>{
+                    status += row[this.importRowAddress]+' added to whitelist with '+row[this.importRowAmount]+' amount';
+                }, e => status += 'Error adding to whitelist')
+            }
+        }
+        this.setStatus(status);
+    }
 }

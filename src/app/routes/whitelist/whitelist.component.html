@@ -24,8 +24,8 @@
             </div>
             <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
                 class="help is-danger">
-                <p [hidden]="canBeNumber(ethAddressCheck)">
-                    Must be a number
+                <p [hidden]="web3.utils.isAddress(ethAddressCheck)">
+                    Must be ethereum address
                 </p>
             </div>
         </div>
@@ -64,8 +64,8 @@
             </div>
             <div *ngIf="!ethAddressAddModel.errors && (ethAddressAddModel.dirty || ethAddressAddModel.touched)"
                 class="help is-danger">
-                <p [hidden]="canBeNumber(ethAddressAdd)">
-                    Must be a number
+                <p [hidden]="web3.utils.isAddress(ethAddressAdd)">
+                    Must be ethereum address
                 </p>
             </div>
         </div>
@@ -99,7 +99,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!addToWhitelistForm.valid"
+                    [disabled]="!addToWhitelistForm.valid || !web3.utils.isAddress(ethAddressAdd)"
                     (click)="addToWhitelist()"
                     class="button is-primary">
                     Send
@@ -131,8 +131,8 @@
             </div>
             <div *ngIf="!ethAddressRemoveModel.errors && (ethAddressRemoveModel.dirty || ethAddressRemoveModel.touched)"
                 class="help is-danger">
-                <p [hidden]="canBeNumber(ethAddressRemove)">
-                    Must be a number
+                <p [hidden]="web3.utils.isAddress(ethAddressRemove)">
+                    Must be ethereum address
                 </p>
             </div>
         </div>
@@ -145,6 +145,68 @@
                     Send
                 </button>
             </p>
+        </div>
+    </form>
+    <h1 class="title">Or import list from the KYC provider</h1>
+    <form #bulkImportForm="ngForm">
+        <div class="field">
+            <label class="label">Sheet address header name</label>
+            <p class="control">
+                <input type="file"
+                    [(ngModel)]="importRowAddress"
+                    name="importRowAddress"
+                    class="input"
+                    type="text"
+                    placeholder="address"
+                    name="importRowAddress"
+                    required
+                    #importRowAddressModel="ngModel"
+                   />
+            </p>
+            <div *ngIf="importRowAddressModel.errors && (importRowAddressModel.dirty || importRowAddressModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!importRowAddressModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <label class="label">Sheet amount header name</label>
+            <p class="control">
+                <input type="file"
+                    [(ngModel)]="importRowAmount"
+                    name="importRowAmount"
+                    class="input"
+                    type="text"
+                    placeholder="amount"
+                    name="importRowAmount"
+                    required
+                    #importRowAmountModel="ngModel"
+                   />
+            </p>
+            <div *ngIf="importRowAmountModel.errors && (importRowAmountModel.dirty || importRowAmountModel.touched)"
+                class="help is-danger">
+                <p [hidden]="!importRowAmountModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <label class="label">File</label>
+            <p class="control">
+                <input type="file"
+                   id="bulkImport"
+                   name="bulkImport"
+                   class="input"
+                   required 
+                   accept=".xlsx, .xls"
+                   (change)="handleFileInput($event)" 
+                   />
+            </p>
+            <div class="field is-grouped">
+                <p class="control">
+                    <button 
+                    [disabled]="!bulkImport || !bulkImportForm.valid"
+                    (click)="export()" 
+                    class="button is-primary">Export!</button>
+                </p>
+            </div>
         </div>
     </form>
  </div>
