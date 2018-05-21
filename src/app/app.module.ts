@@ -1,45 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { HeaderComponent } from './components/header/header.component';
-import { MainComponent } from './routes/main/main.component';
-import { WhitelistComponent } from './routes/whitelist/whitelist.component';
-import { BalancesComponent } from './routes/balances/balances.component';
-import { SetRatesComponent } from './routes/setRates/setRates.component';
-import { SwitchTiersComponent } from './routes/switchTiers/switchTiers.component';
-import { RouterModule } from '@angular/router';
-import { appRoutes } from './app.routes';
-import {SvandisSaleService, Web3Service} from '../services/services'
-
-const SERVICES = [
-    SvandisSaleService,
-    Web3Service,
-]
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {AppComponent} from './app.component';
+import {RouterModule} from '@angular/router';
+import {appRoutes} from './app.routes';
+import {AppCommonModule} from './common/AppCommonModule';
 
 @NgModule({
     imports: [
+        AppCommonModule,
         RouterModule.forRoot(
-            appRoutes, 
-            { enableTracing: true }
+            appRoutes,
+            {enableTracing: true}
         ),
         BrowserModule,
         FormsModule,
         HttpModule
     ],
     declarations: [
-        AppComponent,
-        MainComponent,
-        WhitelistComponent,
-        BalancesComponent,
-        SetRatesComponent,
-        SwitchTiersComponent,
-        NavigationComponent,
-        HeaderComponent
+        AppComponent
     ],
-    providers: [SERVICES],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
