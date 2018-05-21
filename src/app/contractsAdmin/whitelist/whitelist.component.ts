@@ -34,7 +34,7 @@ export class WhitelistComponent extends AccountAwareComponent {
         super(route);
     }
 
-    addToWhitelist = () => {
+    public addToWhitelist = () => {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.addToWhitelist(this.ethAddressAdd, this.whitelistAmount, this.account)
@@ -43,7 +43,7 @@ export class WhitelistComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
-    removeFromWhitelist = () => {
+    public removeFromWhitelist = () => {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.removeFromWhitelist(this.ethAddressRemove, this.account)
@@ -52,7 +52,7 @@ export class WhitelistComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error removing from whitelist; see log.'))
     };
 
-    checkWhitelisted = () => {
+    public checkWhitelisted = () => {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.checkWhitelisted(this.ethAddressCheck, this.account)
@@ -61,7 +61,7 @@ export class WhitelistComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error checking whitelist; see log.'))
     };
 
-    handleFileInput(evt: any) {
+    public handleFileInput(evt: any) {
         this.bulkImport = evt.target;
         const target: DataTransfer = <DataTransfer>(this.bulkImport);
         if (target.files.length !== 1) {
@@ -84,7 +84,7 @@ export class WhitelistComponent extends AccountAwareComponent {
         reader.readAsBinaryString(target.files[0]);
     }
 
-    export() {
+    public doExport() {
         let status = '';
         for (const row of this.importedRows) {
             if (!row[this.importRowAddress] || !row[this.importRowAmount]) {
@@ -98,5 +98,9 @@ export class WhitelistComponent extends AccountAwareComponent {
             }
         }
         this.setStatus(status);
+    }
+
+    public isAddress(address: string): boolean {
+        return this.web3Service.web3.utils.isAddress(address)
     }
 }

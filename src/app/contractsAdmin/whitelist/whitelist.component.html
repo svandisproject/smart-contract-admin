@@ -22,7 +22,7 @@
             </div>
             <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
                  class="help is-danger">
-                <p [hidden]="web3.utils.isAddress(ethAddressCheck)">
+                <p [hidden]="isAddress(ethAddressCheck)">
                     Must be ethereum address
                 </p>
             </div>
@@ -60,7 +60,7 @@
             </div>
             <div *ngIf="!ethAddressAddModel.errors && (ethAddressAddModel.dirty || ethAddressAddModel.touched)"
                  class="help is-danger">
-                <p [hidden]="web3.utils.isAddress(ethAddressAdd)">
+                <p [hidden]="isAddress(ethAddressAdd)">
                     Must be ethereum address
                 </p>
             </div>
@@ -93,7 +93,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!addToWhitelistForm.valid || !web3.utils.isAddress(ethAddressAdd)"
+                    [disabled]="!addToWhitelistForm.valid || !isAddress(ethAddressAdd)"
                     (click)="addToWhitelist()"
                     class="button is-primary">
                     Send
@@ -123,7 +123,7 @@
             </div>
             <div *ngIf="!ethAddressRemoveModel.errors && (ethAddressRemoveModel.dirty || ethAddressRemoveModel.touched)"
                  class="help is-danger">
-                <p [hidden]="web3.utils.isAddress(ethAddressRemove)">
+                <p [hidden]="isAddress(ethAddressRemove)">
                     Must be ethereum address
                 </p>
             </div>
@@ -194,7 +194,7 @@
                 <p class="control">
                     <button
                         [disabled]="!bulkImport || !bulkImportForm.valid"
-                        (click)="export()"
+                        (click)="doExport()"
                         class="button is-primary">Export!
                     </button>
                 </p>
