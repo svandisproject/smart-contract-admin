@@ -13,17 +13,16 @@
                     placeholder="0.005"
                     name="tier1Rate"
                     required
-                    #tier1RateModel="ngModel"
-                >
+                    #tier1RateModel="ngModel">
             </p>
             <div *ngIf="tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
-                class="help is-danger">
+                 class="help is-danger">
                 <p [hidden]="!tier1RateModel.errors.required">
                     This field is required
                 </p>
             </div>
             <div *ngIf="!tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
-                class="help is-danger">
+                 class="help is-danger">
                 <p [hidden]="canBeNumber(tier1Rate)">
                     Must be a number
                 </p>
@@ -40,17 +39,16 @@
                     placeholder="0.009"
                     name="tier2Rate"
                     required
-                    #tier2RateModel="ngModel"
-                >
+                    #tier2RateModel="ngModel">
             </p>
             <div *ngIf="tier2RateModel.errors && (tier2RateModel.dirty || tier2RateModel.touched)"
-                class="help is-danger">
+                 class="help is-danger">
                 <p [hidden]="!tier2RateModel.errors.required">
                     This field is required
                 </p>
             </div>
             <div *ngIf="!tier2RateModel.errors && (tier2RateModel.dirty || tier2RateModel.touched)"
-                class="help is-danger">
+                 class="help is-danger">
                 <p [hidden]="canBeNumber(tier2Rate)">
                     Must be a number
                 </p>
@@ -62,9 +60,9 @@
                     [disabled]="!setRatesForm.valid"
                     (click)="setTierRates()"
                     class="button is-primary">
-                        Send
+                    Send
                 </button>
             </p>
         </div>
     </form>
- </div>
+</div>
