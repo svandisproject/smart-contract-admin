@@ -3,6 +3,7 @@ import {RouterModule} from '@angular/router';
 import {ContractAdminRouteConfig} from './ContractsAdminRouteConfig';
 import {WhitelistComponent} from './whitelist/whitelist.component';
 import {SwitchTiersComponent} from './switchTiers/switchTiers.component';
+import {WithdrawComponent} from './withdraw/withdraw.component';
 import {SetRatesComponent} from './setRates/setRates.component';
 import {BalancesComponent} from './balances/balances.component';
 import {HomeComponent} from './home/HomeComponent';
@@ -20,7 +21,8 @@ import {FormsModule} from '@angular/forms';
         HomeComponent,
         SwitchTiersComponent,
         SetRatesComponent,
-        BalancesComponent
+        BalancesComponent,
+        WithdrawComponent
     ]
 })
 export class ContractsAdminModule {

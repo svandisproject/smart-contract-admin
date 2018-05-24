@@ -12,6 +12,7 @@ export class AppComponent {
     accounts: Array<string>;
 
     balance: number;
+    contractEth: number;
     contractBalance: number;
     status: string;
 
@@ -38,6 +39,7 @@ export class AppComponent {
     runInitialCalls = () => {
         this.refreshBalance();
         this.getContractBalance();
+        this.getContractEth();
     };
 
     getContractBalance = () => {
@@ -48,6 +50,15 @@ export class AppComponent {
                 this.setStatus('Error getting contract balance; see log.')
             })
     };
+
+    getContractEth = () => {
+        this.svandisSaleService.getContractEth(this.account)
+            .subscribe(value => {
+                this.contractEth = value;
+            }, e => {
+                this.setStatus('Error getting eth; see log.')
+            })
+    }
 
     refreshBalance = () => {
         this.svandisSaleService.getBalance(this.account)

@@ -178,4 +178,45 @@ export class SvandisSaleService {
                 });
         })
     }
+
+    public withdraw(account): Observable<any> {
+
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+                .deployed()
+                .then(instance => {
+                    meta = instance;
+                    return meta.withdraw({
+                        from: account
+                    });
+                })
+                .then(() => {
+                    observer.next()
+                    observer.complete()
+                })
+                .catch(e => {
+                    console.log(e);
+                    observer.error(e)
+                });
+        })
+    }
+
+    public getContractEth(account): Observable<number> {
+        let meta;
+        return fromPromise(this.Sale.deployed())
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.getContractEth.call({
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
 }

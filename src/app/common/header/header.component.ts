@@ -7,4 +7,5 @@ import {Component, Input} from '@angular/core';
 export class HeaderComponent {
     @Input() balance: number;
     @Input() contractBalance: number;
+    @Input() contractEth: number;
 }

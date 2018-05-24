@@ -6,10 +6,12 @@ import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from './app.routes';
 import {AppCommonModule} from './common/AppCommonModule';
+import {ContractsAdminModule} from './contractsAdmin/ContractsAdminModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
+        ContractsAdminModule,
         RouterModule.forRoot(
             appRoutes,
             {enableTracing: true}
