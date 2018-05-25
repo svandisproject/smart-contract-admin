@@ -44,8 +44,10 @@ export class AppComponent {
 
     getContractBalance = () => {
         this.svandisSaleService.getContractBalance(this.account)
-            .subscribe(value => {
-                this.contractBalance = value
+            .subscribe(call => {
+                call.then(value => {
+                    this.contractBalance = value
+                })
             }, e => {
                 this.setStatus('Error getting contract balance; see log.')
             })
@@ -53,8 +55,10 @@ export class AppComponent {
 
     getContractEth = () => {
         this.svandisSaleService.getContractEth(this.account)
-            .subscribe(value => {
-                this.contractEth = value;
+            .subscribe(call => {
+                call.then(value => {
+                    this.contractEth = value;
+                })
             }, e => {
                 this.setStatus('Error getting eth; see log.')
             })
@@ -62,8 +66,10 @@ export class AppComponent {
 
     refreshBalance = () => {
         this.svandisSaleService.getBalance(this.account)
-            .subscribe(value => {
-                this.balance = value
+            .subscribe(call => {
+                call.then(value => {
+                    this.balance = value;
+                })
             }, e => {
                 this.setStatus('Error getting balance; see log.')
             })

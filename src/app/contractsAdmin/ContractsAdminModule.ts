@@ -6,7 +6,7 @@ import {SwitchTiersComponent} from './switchTiers/switchTiers.component';
 import {WithdrawComponent} from './withdraw/withdraw.component';
 import {SetRatesComponent} from './setRates/setRates.component';
 import {BalancesComponent} from './balances/balances.component';
-import {HomeComponent} from './home/HomeComponent';
+import {HomeComponent} from './home/home.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 

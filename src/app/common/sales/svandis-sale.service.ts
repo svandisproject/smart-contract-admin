@@ -19,16 +19,17 @@ export class SvandisSaleService {
     }
 
     // TODO: Use this fromPromise approach for other methods in this class
-    public getContractBalance(account): Observable<number> {
+    public getContractBalance(account): Observable<any> {
         let meta;
         return fromPromise(this.Sale.deployed())
             .pipe(
                 map((instance) => {
                     meta = instance;
-                    console.log(meta.address);
                     // we use call here so the call doesn't try and write, making it free
                     return meta.balanceOf.call(meta.address, {
                         from: account
+                    }).then(value => {
+                        return value / (Math.pow(10, 18));
                     });
                 }),
                 catchError((err) => {
@@ -38,29 +39,44 @@ export class SvandisSaleService {
             );
     }
 
-    public getBalance(account): Observable<number> {
+    public getContractEth(account): Observable<any> {
         let meta;
+        return fromPromise(this.Sale.deployed())
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.getContractEth.call({
+                        from: account
+                    }).then(value => {
+                        return value / (Math.pow(10, 18));
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
 
-        return Observable.create(observer => {
-            this.Sale
-                .deployed()
-                .then(instance => {
+    public getBalance(account): Observable<any> {
+        let meta;
+        return fromPromise(this.Sale.deployed())
+            .pipe(
+                map((instance) => {
                     meta = instance;
                     // we use call here so the call doesn't try and write, making it free
                     return meta.balanceOf.call(account, {
                         from: account
+                    }).then(value => {
+                        return value / (Math.pow(10, 18));
                     });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .then(value => {
-                    value = value / (Math.pow(10, 18));
-                    observer.next(value)
-                    observer.complete()
-                })
-                .catch(e => {
-                    console.log(e);
-                    observer.error(e)
-                });
-        })
+            );
     }
 
     public addToWhitelist(ethAddress, amount, account): Observable<any> {
@@ -202,21 +218,5 @@ export class SvandisSaleService {
         })
     }
 
-    public getContractEth(account): Observable<number> {
-        let meta;
-        return fromPromise(this.Sale.deployed())
-            .pipe(
-                map((instance) => {
-                    meta = instance;
-                    // we use call here so the call doesn't try and write, making it free
-                    return meta.getContractEth.call({
-                        from: account
-                    });
-                }),
-                catchError((err) => {
-                    console.log(err);
-                    return of(err);
-                })
-            );
-    }
+    
 }

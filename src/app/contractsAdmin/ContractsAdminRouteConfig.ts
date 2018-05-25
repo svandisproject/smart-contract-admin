@@ -4,7 +4,7 @@ import {SetRatesComponent} from './setRates/setRates.component';
 import {BalancesComponent} from './balances/balances.component';
 import {SwitchTiersComponent} from './switchTiers/switchTiers.component';
 import {WithdrawComponent} from './withdraw/withdraw.component';
-import {HomeComponent} from './home/HomeComponent';
+import {HomeComponent} from './home/home.component';
 import {Web3AccountResolver} from '../common/sales/Web3AccountResolver';
 
 export const ContractAdminRouteConfig: Route[] = [
