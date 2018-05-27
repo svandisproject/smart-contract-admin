@@ -14,7 +14,7 @@ contract('Svandis Token', function ([holderAddress, recipientAddress, anyAddress
 
 	let token;
 
-	beforeEach(async function () {
+	before(async function () {
 		token = await SvandisToken.new()
 	});
 
