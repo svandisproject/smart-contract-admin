@@ -4,8 +4,12 @@ import {Web3Service} from './sales/web3.service';
 import {NavigationComponent} from './navigation/navigation.component';
 import {HeaderComponent} from './header/header.component';
 import {Web3AccountResolver} from './sales/Web3AccountResolver';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
+    imports: [
+        RouterModule
+    ],
     providers: [
         SvandisSaleService,
         Web3Service,
