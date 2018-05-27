@@ -14,7 +14,6 @@ import {ContractsAdminModule} from './contractsAdmin/ContractsAdminModule';
         ContractsAdminModule,
         RouterModule.forRoot(
             appRoutes,
-            {enableTracing: true}
         ),
         BrowserModule,
         FormsModule,
