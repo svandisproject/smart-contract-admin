@@ -23,7 +23,7 @@ import {FormsModule} from '@angular/forms';
         SetRatesComponent,
         BalancesComponent,
         WithdrawComponent
-    ]
+    ],
 })
 export class ContractsAdminModule {
 }

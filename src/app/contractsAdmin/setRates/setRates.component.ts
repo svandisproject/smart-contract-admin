@@ -1,7 +1,7 @@
 import {Component, NgZone} from '@angular/core';
 import {SvandisSaleService} from '../../common/sales/svandis-sale.service';
 import {AccountAwareComponent} from '../AccountAwareComponent';
-import {ActivatedRouteSnapshot} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-set-rates-component',
@@ -13,7 +13,7 @@ export class SetRatesComponent extends AccountAwareComponent {
 
     constructor(private _ngZone: NgZone,
                 private svandisSaleService: SvandisSaleService,
-                route: ActivatedRouteSnapshot) {
+                route: ActivatedRoute) {
         super(route);
     }
 
