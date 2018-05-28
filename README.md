@@ -11,3 +11,8 @@
 3. run `truffle compile` (Ensure ganache-cli is running)
 4. run `truffle migrate`
 5. run `npm run start`
+
+# Testing
+1. Ensure project smart contracts previously compiled (`truffle compile`)
+2. Ensure `ganache-cli` is running
+3. run `truffle test` to run javascript tests
