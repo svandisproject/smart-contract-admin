@@ -1,7 +1,7 @@
 import {Component, NgZone} from '@angular/core';
 import * as XLSX from 'xlsx';
 import {AccountAwareComponent} from '../AccountAwareComponent';
-import {ActivatedRouteSnapshot} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {SvandisSaleService} from '../../common/sales/svandis-sale.service';
 import {Web3Service} from '../../common/sales/web3.service';
 
@@ -30,7 +30,7 @@ export class WhitelistComponent extends AccountAwareComponent {
     constructor(private _ngZone: NgZone,
                 private web3Service: Web3Service,
                 private svandisSaleService: SvandisSaleService,
-                route: ActivatedRouteSnapshot) {
+                route: ActivatedRoute) {
         super(route);
     }
 
