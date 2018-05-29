@@ -1,6 +1,6 @@
 import {Component, NgZone} from '@angular/core';
 import {SvandisSaleService} from '../../common/sales/svandis-sale.service';
-import {ActivatedRouteSnapshot} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {AccountAwareComponent} from '../AccountAwareComponent';
 
 @Component({
@@ -13,7 +13,7 @@ export class BalancesComponent extends AccountAwareComponent {
 
     constructor(private _ngZone: NgZone,
                 private svandisSaleService: SvandisSaleService,
-                route: ActivatedRouteSnapshot) {
+                route: ActivatedRoute) {
         super(route)
     }
 
