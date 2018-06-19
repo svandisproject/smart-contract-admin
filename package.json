@@ -6,11 +6,13 @@
     "ng": "ng",
     "compile": "truffle compile; truffle migrate",
     "compile-start": "truffle compile; truffle migrate; ng serve --aot",
-    "start": "ng serve",
+    "start": "node server.js",
+    "serve": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -28,10 +30,13 @@
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.2",
     "core-js": "^2.4.1",
+    "express": "^4.16.3",
     "lodash": "^4.17.10",
+    "path": "^0.12.7",
     "rxjs": "^5.1.0",
     "truffle-contract": "^2.0.5",
-    "web3": "^1.0.0-beta.34",
+    "typescript": "~2.4.2",
+    "web3": "^1.0.0-beta2",
     "xlsx": "^0.12.13",
     "zone.js": "^0.8.4"
   },
@@ -67,12 +72,15 @@
     "karma-coverage-istanbul-reporter": "^1.3.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.0",
+    "protractor": "^5.3.2",
     "style-loader": "^0.18.2",
     "ts-node": "^3.0.2",
     "tslint": "~5.6.0",
-    "typescript": "~2.4.2",
     "webpack": "^3.5.2",
     "webpack-dev-server": "^2.3.0"
+  },
+  "engines": {
+    "node": "^8.11",
+    "npm": "^6.1"
   }
 }
