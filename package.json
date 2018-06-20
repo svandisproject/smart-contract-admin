@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "compile": "truffle compile; truffle migrate",
-    "compile-start": "truffle compile; truffle migrate; ng serve --aot",
+    "compile": "truffle compile; truffle migrate --network kovan",
+    "compile-start": "truffle compile; truffle migrate --network kovan; ng serve --aot",
     "start": "node server.js",
     "serve": "ng serve",
     "build": "ng build",
