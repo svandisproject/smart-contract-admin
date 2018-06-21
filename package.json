@@ -12,7 +12,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "./node_modules/.bin/truffle compile; ng build --aot -prod"
+    "postinstall": "./node_modules/.bin/truffle compile; ./node_modules/.bin/truffle migrate --network kovan; ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
