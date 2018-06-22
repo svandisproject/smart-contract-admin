@@ -20,12 +20,6 @@
                     This field is required
                 </p>
             </div>
-            <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
-                 class="help is-danger">
-                <p [hidden]="!isNotNumber(tier)">
-                    Must be a number
-                </p>
-            </div>
         </div>
         <div class="field is-grouped">
             <p class="control">
