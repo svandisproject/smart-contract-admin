@@ -193,7 +193,7 @@
             <div class="field is-grouped">
                 <p class="control">
                     <button
-                        [disabled]="!bulkImport || !bulkImportForm.form.valid"
+                        [disabled]="!bulkImport || !bulkImportForm.valid"
                         (click)="doExport()"
                         class="button is-primary">Export!
                     </button>

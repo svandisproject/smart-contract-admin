@@ -22,7 +22,7 @@
             </div>
             <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
-                <p [hidden]="!isNaN(tier)">
+                <p [hidden]="isNumber(tier)">
                     Must be a number
                 </p>
             </div>
@@ -31,7 +31,7 @@
             <p class="control">
                 <!--TODO: There is no such method setTierRates() probably copy paste error-->
                 <button
-                    [disabled]="!switchTiersForm.form.valid"
+                    [disabled]="!switchTiersForm.valid"
                     (click)="switchTiers()"
                     class="button is-primary">
                     Send
