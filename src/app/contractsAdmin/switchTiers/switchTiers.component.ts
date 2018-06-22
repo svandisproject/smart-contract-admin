@@ -27,6 +27,5 @@ export class SwitchTiersComponent extends AccountAwareComponent {
 
     test = () => {
         console.log(this.tier);
-    }
-
+    };
 }
