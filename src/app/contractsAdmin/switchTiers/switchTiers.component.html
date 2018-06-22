@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="title is-4 is-info help">{{status}}</h1>
     <h1 class="title">Switch Tiers</h1>
-    <form #switchTiersForm="ngForm" novalidate>
+    <form #switchTiersForm="ngForm" (submit)="switchTiers()">
         <div class="field">
             <label class="label">Tier</label>
             <p class="control">
@@ -12,15 +12,26 @@
                     placeholder="1 or 2"
                     name="tier"
                     required
-                    #tierModel="ngModel">
+                    #tierModel="ngModel"
+                    onChange="test()">
             </p>
+            <div *ngIf="tierModel.errors && (tierModel.dirty || tierModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!tierModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!isNaN(tier)">
+                    Must be a number
+                </p>
+            </div>
         </div>
         <div class="field is-grouped">
             <p class="control">
-                <!--TODO: There is no such method setTierRates() probably copy paste error-->
                 <button
-                    [disabled]="!switchTiersForm.form.valid"
-                    (click)="switchTiers()"
+                    [disabled]="!switchTiersForm.valid"
                     class="button is-primary">
                     Send
                 </button>
