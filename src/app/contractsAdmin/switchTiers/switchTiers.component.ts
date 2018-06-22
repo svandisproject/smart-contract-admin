@@ -25,7 +25,7 @@ export class SwitchTiersComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
-    isNumber = (n) => {
-        return !isNaN(n);
+    isNotNumber = (n) => {
+        return isNaN(n);
     }
 }

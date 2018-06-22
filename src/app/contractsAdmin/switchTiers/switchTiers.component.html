@@ -22,7 +22,7 @@
             </div>
             <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
-                <p [hidden]="isNumber(tier)">
+                <p [hidden]="!isNotNumber(tier)">
                     Must be a number
                 </p>
             </div>
