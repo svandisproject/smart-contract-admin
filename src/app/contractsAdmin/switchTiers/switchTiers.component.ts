@@ -25,5 +25,9 @@ export class SwitchTiersComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
+    test = () => {
+        console.log(this.tier);
+    }
+
     get diagnostic() { return this.tier; }
 }
