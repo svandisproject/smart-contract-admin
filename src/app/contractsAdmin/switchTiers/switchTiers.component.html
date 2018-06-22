@@ -12,8 +12,7 @@
                     placeholder="1 or 2"
                     name="tier"
                     required
-                    #tierModel="ngModel"
-                    onChange="console.log(tier)">
+                    #tierModel="ngModel">
             </p>
             <div *ngIf="tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
@@ -23,7 +22,7 @@
             </div>
             <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
-                <p [hidden]="!isNaN(tier)">
+                <p [hidden]="!isNotNumber(tier)">
                     Must be a number
                 </p>
             </div>
