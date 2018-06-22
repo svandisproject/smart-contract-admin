@@ -14,24 +14,12 @@
                     required
                     #tierModel="ngModel">
             </p>
-            <div *ngIf="tierModel.errors && (tierModel.dirty || tierModel.touched)"
-                 class="help is-danger">
-                <p [hidden]="!tierModel.errors.required">
-                    This field is required
-                </p>
-            </div>
-            <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
-                 class="help is-danger">
-                <p [hidden]="!isNotNumber(tier)">
-                    Must be a number
-                </p>
-            </div>
         </div>
         <div class="field is-grouped">
             <p class="control">
                 <!--TODO: There is no such method setTierRates() probably copy paste error-->
                 <button
-                    [disabled]="!switchTiersForm.valid"
+                    [disabled]="!switchTiersForm.form.valid"
                     (click)="switchTiers()"
                     class="button is-primary">
                     Send
