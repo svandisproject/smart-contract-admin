@@ -13,7 +13,7 @@
                     name="tier"
                     required
                     #tierModel="ngModel"
-                    onChange="test()">
+                    onChange="console.log(tier)">
             </p>
             <div *ngIf="tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
