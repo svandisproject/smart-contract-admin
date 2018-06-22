@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="title is-4 is-info help">{{status}}</h1>
     <h1 class="title">Switch Tiers</h1>
-    <form #switchTiersForm="ngForm" (submit)="switchTiers()">
+    <form #switchTiersForm="ngForm">
         <div class="field">
             <label class="label">Tier</label>
             <p class="control">
@@ -32,6 +32,7 @@
             <p class="control">
                 <button
                     [disabled]="!switchTiersForm.valid"
+                    (click)="switchTiers()"
                     class="button is-primary">
                     Send
                 </button>
