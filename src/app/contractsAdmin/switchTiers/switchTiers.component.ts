@@ -29,5 +29,4 @@ export class SwitchTiersComponent extends AccountAwareComponent {
         console.log(this.tier);
     }
 
-    get diagnostic() { return this.tier; }
 }
