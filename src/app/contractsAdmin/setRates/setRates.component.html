@@ -57,7 +57,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!setRatesForm.valid"
+                    [disabled]="!setRatesForm.form.valid"
                     (click)="setTierRates()"
                     class="button is-primary">
                     Send

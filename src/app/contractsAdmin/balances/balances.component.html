@@ -30,7 +30,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!getBalanceForm.valid"
+                    [disabled]="!getBalanceForm.form.valid"
                     (click)="getBalance()"
                     class="button is-primary">
                     Send
