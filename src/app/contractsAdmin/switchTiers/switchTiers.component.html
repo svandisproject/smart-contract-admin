@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="title is-4 is-info help">{{status}}</h1>
     <h1 class="title">Switch Tiers</h1>
-    <form #switchTiersForm="ngForm">
+    <form #switchTiersForm="ngForm" novalidate>
         <div class="field">
             <label class="label">Tier</label>
             <p class="control">
@@ -18,6 +18,12 @@
                  class="help is-danger">
                 <p [hidden]="!tierModel.errors.required">
                     This field is required
+                </p>
+            </div>
+            <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!isNotNumber(tier)">
+                    Must be a number
                 </p>
             </div>
         </div>
