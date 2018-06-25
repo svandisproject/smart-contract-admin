@@ -19,8 +19,10 @@ export class BalancesComponent extends AccountAwareComponent {
 
     public getBalance = () => {
         this.svandisSaleService.getBalance(this.ethAddressCheck)
-            .subscribe(value => {
-                this.setStatus('The address balance is ' + value);
+            .subscribe(call => {
+                call.then(value => {
+                    this.setStatus('The address balance is ' + value);
+                })
             }, e => {
                 this.setStatus('Error getting balance; see log.')
             })
