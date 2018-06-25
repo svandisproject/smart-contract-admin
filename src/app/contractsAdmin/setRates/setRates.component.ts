@@ -17,12 +17,16 @@ export class SetRatesComponent extends AccountAwareComponent {
         super(route);
     }
 
-    setTierRates = () => {
+    public setTierRates = () => {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.setTiers(this.tier1Rate, this.tier2Rate, this.account)
             .subscribe(() => {
                 this.setStatus('Tier 1 rate set to ' + this.tier1Rate + ', Tier 2 rate set to ' + this.tier2Rate);
             }, e => this.setStatus('Error adding to whitelist; see log.'))
+    };
+
+    public isNotNumber = (n) => {
+        return isNaN(n);
     };
 }

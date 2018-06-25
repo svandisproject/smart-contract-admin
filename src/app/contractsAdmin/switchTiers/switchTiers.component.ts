@@ -1,3 +1,4 @@
+import {ngModel} from '@angular/forms';
 import {Component, NgZone} from '@angular/core';
 import {AccountAwareComponent} from '../AccountAwareComponent';
 import {ActivatedRoute} from '@angular/router';
@@ -25,7 +26,7 @@ export class SwitchTiersComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
-    isNotNumber = (n) => {
+    public isNotNumber = (n) => {
         return isNaN(n);
     };
 }

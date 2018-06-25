@@ -85,7 +85,7 @@
             </div>
             <div *ngIf="!whitelistAmountModel.errors && (whitelistAmountModel.dirty || whitelistAmountModel.touched)"
                  class="help is-danger">
-                <p [hidden]="canBeNumber(whitelistAmount)">
+                <p [hidden]="!isNotNumber(whitelistAmount)">
                     Must be a number
                 </p>
             </div>

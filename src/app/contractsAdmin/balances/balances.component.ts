@@ -25,4 +25,8 @@ export class BalancesComponent extends AccountAwareComponent {
                 this.setStatus('Error getting balance; see log.')
             })
     };
+
+    public isNotNumber = (n) => {
+        return isNaN(n);
+    };
 }

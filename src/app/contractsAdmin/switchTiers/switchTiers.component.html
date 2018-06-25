@@ -1,18 +1,18 @@
 <div class="container">
     <h1 class="title is-4 is-info help">{{status}}</h1>
     <h1 class="title">Switch Tiers</h1>
-    <form #switchTiersForm="ngForm">
+    <form #switchTiersForm="ngForm" (submit)="switchTiers()">
         <div class="field">
             <label class="label">Tier</label>
             <p class="control">
                 <input
-                    [(ngModel)]="tier"
-                    class="input"
                     type="text"
-                    placeholder="1 or 2"
+                    class="input"
                     name="tier"
-                    required
-                    #tierModel="ngModel">
+                    [(ngModel)]="tier"
+                    #tierModel="ngModel"
+                    placeholder="1 or 2"
+                    required>
             </p>
             <div *ngIf="tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
@@ -30,8 +30,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!switchTiersForm.valid"
-                    (click)="switchTiers()"
+                    [disabled]="!switchTiersForm.form.valid"
                     class="button is-primary">
                     Send
                 </button>
