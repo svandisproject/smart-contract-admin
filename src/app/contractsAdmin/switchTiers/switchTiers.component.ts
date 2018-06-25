@@ -1,4 +1,3 @@
-import {ngModel} from '@angular/forms';
 import {Component, NgZone} from '@angular/core';
 import {AccountAwareComponent} from '../AccountAwareComponent';
 import {ActivatedRoute} from '@angular/router';
