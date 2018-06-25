@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {Web3Service} from './web3.service';
 
 @Injectable()
-export class Web3AccountResolver implements Resolve<Observable<any>> {
+export class Web3AccountResolver implements Resolve<any> {
 
     constructor(private web3Service: Web3Service) {
 

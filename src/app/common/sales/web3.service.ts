@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {fromPromise} from 'rxjs/observable/fromPromise';
+import {catchError, map} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import * as _ from 'lodash';
 
@@ -36,19 +38,14 @@ export class Web3Service {
     };
 
     getAccounts(): Observable<any> {
-        return Observable.create(observer => {
-            this.web3.eth.getAccounts((err, accs) => {
-                if (err != null) {
-                    observer.error('There was an error fetching your accounts.')
-                }
-
-                if (accs.length === 0) {
-                    observer.error('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.')
-                }
-
-                observer.next(accs);
-                observer.complete()
-            });
-        })
+        return fromPromise(this.web3.eth.getAccounts())
+            .pipe(
+                map((accounts) => {
+                    return accounts;
+                }),
+                catchError((err) => {
+                    return [];
+                })
+            );
     }
 }
