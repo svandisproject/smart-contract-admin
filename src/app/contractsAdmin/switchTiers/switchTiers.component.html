@@ -1,37 +1,36 @@
 <div class="container">
     <h1 class="title is-4 is-info help">{{status}}</h1>
     <h1 class="title">Switch Tiers</h1>
-    <form #switchTiersForm="ngForm">
+    <form #switchTiersForm="ngForm" (submit)="switchTiers()">
         <div class="field">
             <label class="label">Tier</label>
             <p class="control">
                 <input
-                    [(ngModel)]="tier"
-                    class="input"
                     type="text"
+                    class="input"
+                    name="tier"
+                    [(ngModel)]="tier"
+                    #tierModel="ngModel"
                     placeholder="1 or 2"
-                    name="tier1Rate"
-                    required
-                    #tier1RateModel="ngModel">
+                    required>
             </p>
-            <div *ngIf="tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
+            <div *ngIf="tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
-                <p [hidden]="!tier1RateModel.errors.required">
+                <p [hidden]="!tierModel.errors.required">
                     This field is required
                 </p>
             </div>
-            <div *ngIf="!tier1RateModel.errors && (tier1RateModel.dirty || tier1RateModel.touched)"
+            <div *ngIf="!tierModel.errors && (tierModel.dirty || tierModel.touched)"
                  class="help is-danger">
-                <p [hidden]="!isNaN(tier1Rate)">
+                <p [hidden]="!isNotNumber(tier)">
                     Must be a number
                 </p>
             </div>
         </div>
         <div class="field is-grouped">
             <p class="control">
-                <!--TODO: There is no such method setTierRates() probably copy paste error-->
                 <button
-                    [disabled]="!switchTiersForm.valid"
+                    [disabled]="!switchTiersForm.form.valid"
                     class="button is-primary">
                     Send
                 </button>

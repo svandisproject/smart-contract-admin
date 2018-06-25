@@ -103,4 +103,8 @@ export class WhitelistComponent extends AccountAwareComponent {
     public isAddress(address: string): boolean {
         return this.web3Service.web3.utils.isAddress(address)
     }
+
+    public isNotNumber = (n) => {
+        return isNaN(n);
+    };
 }

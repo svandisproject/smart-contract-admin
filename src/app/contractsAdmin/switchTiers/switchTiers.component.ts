@@ -24,4 +24,8 @@ export class SwitchTiersComponent extends AccountAwareComponent {
                 this.setStatus('Current tier set to ' + this.tier);
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
+
+    public isNotNumber = (n) => {
+        return isNaN(n);
+    };
 }

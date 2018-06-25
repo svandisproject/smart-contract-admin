@@ -22,7 +22,7 @@
             </div>
             <div *ngIf="!ethAddressCheckModel.errors && (ethAddressCheckModel.dirty || ethAddressCheckModel.touched)"
                  class="help is-danger">
-                <p [hidden]="canBeNumber(ethAddressCheck)">
+                <p [hidden]="!isNotNumber(ethAddressCheck)">
                     Must be a number
                 </p>
             </div>

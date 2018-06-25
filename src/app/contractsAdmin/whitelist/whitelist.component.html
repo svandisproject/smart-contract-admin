@@ -30,7 +30,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!checkWhitelistedForm.valid"
+                    [disabled]="!checkWhitelistedForm.form.valid"
                     (click)="checkWhitelisted()"
                     class="button is-primary">
                     Send
@@ -85,7 +85,7 @@
             </div>
             <div *ngIf="!whitelistAmountModel.errors && (whitelistAmountModel.dirty || whitelistAmountModel.touched)"
                  class="help is-danger">
-                <p [hidden]="canBeNumber(whitelistAmount)">
+                <p [hidden]="!isNotNumber(whitelistAmount)">
                     Must be a number
                 </p>
             </div>
@@ -93,7 +93,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!addToWhitelistForm.valid || !isAddress(ethAddressAdd)"
+                    [disabled]="!addToWhitelistForm.form.valid || !isAddress(ethAddressAdd)"
                     (click)="addToWhitelist()"
                     class="button is-primary">
                     Send
@@ -131,7 +131,7 @@
         <div class="field is-grouped">
             <p class="control">
                 <button
-                    [disabled]="!removeFromWhitelistForm.valid"
+                    [disabled]="!removeFromWhitelistForm.form.valid"
                     (click)="removeFromWhitelist()"
                     class="button is-primary">
                     Send
