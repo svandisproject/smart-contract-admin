@@ -1,6 +1,6 @@
 import {Route} from '@angular/router';
 import {WhitelistComponent} from './whitelist/whitelist.component';
-import {WhitelistComponent} from './companyWhitelist/companyWhitelist.component';
+import {CompanyWhitelistComponent} from './companyWhitelist/companyWhitelist.component';
 import {SetRatesComponent} from './setRates/setRates.component';
 import {BalancesComponent} from './balances/balances.component';
 import {SwitchTiersComponent} from './switchTiers/switchTiers.component';
