@@ -11,7 +11,7 @@ const contract = require('truffle-contract');
 @Injectable()
 export class SvandisSaleService {
 
-    Sale = contract(svandisSaleArtifacts).at(process.env.owner);
+    Sale = contract(svandisSaleArtifacts).at(env.contract);
 
     constructor(private web3Ser: Web3Service) {
         // Bootstrap the MetaCoin abstraction for Use
