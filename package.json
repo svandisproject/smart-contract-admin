@@ -4,15 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "compile": "truffle compile; truffle migrate",
-    "compile-start": "truffle compile; truffle migrate; ng serve --aot",
+    "compile": "truffle compile;",
+    "compile-start": "truffle compile; ng serve --aot",
     "start": "node server.js",
     "serve": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "./node_modules/.bin/truffle compile; ./node_modules/.bin/truffle migrate; ng build --aot -prod"
+    "postinstall": "./node_modules/.bin/truffle compile; ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
