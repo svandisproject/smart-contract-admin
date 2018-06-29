@@ -12,7 +12,7 @@ const contract = require('truffle-contract');
 export class SvandisSaleService {
 
     Sale = contract({
-        abi: svandisSaleArtifacts,
+        abi: svandisSaleArtifacts.abi,
     });
 
     contractAddress = '0x14a88e5ffd2fc39a7fa5b02821cbc64fe5893b9a';
@@ -21,7 +21,6 @@ export class SvandisSaleService {
         // Bootstrap the MetaCoin abstraction for Use
 
         this.Sale.setProvider(web3Ser.web3.currentProvider);
-        console.log(this.Sale);
     }
 
     // TODO: Use this fromPromise approach for other methods in this class
