@@ -11,17 +11,22 @@ const contract = require('truffle-contract');
 @Injectable()
 export class SvandisSaleService {
 
-    Sale = contract(svandisSaleArtifacts).at('0x14a88e5ffd2fc39a7fa5b02821cbc64fe5893b9a');
+    Sale = contract({
+        abi: svandisSaleArtifacts.abi,
+    });
+
+    contractAddress = '0x14a88e5ffd2fc39a7fa5b02821cbc64fe5893b9a';
 
     constructor(private web3Ser: Web3Service) {
         // Bootstrap the MetaCoin abstraction for Use
+
         this.Sale.setProvider(web3Ser.web3.currentProvider);
     }
 
     // TODO: Use this fromPromise approach for other methods in this class
     public getContractBalance(account): Observable<any> {
         let meta;
-        return fromPromise(this.Sale.deployed())
+        return fromPromise(this.Sale.at(this.contractAddress))
             .pipe(
                 map((instance) => {
                     meta = instance;
@@ -41,7 +46,7 @@ export class SvandisSaleService {
 
     public getContractEth(account): Observable<any> {
         let meta;
-        return fromPromise(this.Sale.deployed())
+        return fromPromise(this.Sale.at(this.contractAddress))
             .pipe(
                 map((instance) => {
                     meta = instance;
@@ -61,7 +66,7 @@ export class SvandisSaleService {
 
     public getBalance(account): Observable<any> {
         let meta;
-        return fromPromise(this.Sale.deployed())
+        return fromPromise(this.Sale.at(this.contractAddress))
             .pipe(
                 map((instance) => {
                     meta = instance;
@@ -84,7 +89,7 @@ export class SvandisSaleService {
         let meta;
         return Observable.create(observer => {
             this.Sale
-                .deployed()
+                .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
                     return meta.addToWhitelist(ethAddress, amount, {
@@ -107,7 +112,7 @@ export class SvandisSaleService {
         let meta;
         return Observable.create(observer => {
             this.Sale
-                .deployed()
+                .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
                     return meta.removeFromWhitelist(ethAddress, {
@@ -130,7 +135,7 @@ export class SvandisSaleService {
         let meta;
         return Observable.create(observer => {
             this.Sale
-                .deployed()
+                .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
                     return meta.checkWhitelisted.call(ethAddress, {
@@ -154,7 +159,7 @@ export class SvandisSaleService {
         let meta;
         return Observable.create(observer => {
             this.Sale
-                .deployed()
+                .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
                     return meta.setTiers(tier1Rate, tier2Rate, {
@@ -177,7 +182,7 @@ export class SvandisSaleService {
         let meta;
         return Observable.create(observer => {
             this.Sale
-                .deployed()
+                .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
                     return meta.switchTiers(tier, {
@@ -200,7 +205,7 @@ export class SvandisSaleService {
         let meta;
         return Observable.create(observer => {
             this.Sale
-                .deployed()
+                .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
                     return meta.withdraw({
