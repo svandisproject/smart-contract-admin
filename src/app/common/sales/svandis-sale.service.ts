@@ -14,6 +14,7 @@ export class SvandisSaleService {
     Sale = contract({
         abi: svandisSaleArtifacts,
         address: '0x14a88e5ffd2fc39a7fa5b02821cbc64fe5893b9a',
+        network_id: 42
     });
 
     constructor(private web3Ser: Web3Service) {
