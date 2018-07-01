@@ -200,6 +200,28 @@ export class SvandisSaleService {
         })
     }
 
+    public setWithdrawWallet(withdrawWallet, account): Observable<any> {
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+                .at(this.contractAddress)
+                .then(instance => {
+                    meta = instance;
+                    return meta.setWithdrawWallet(withdrawWallet, {
+                        from: account
+                    });
+                })
+                .then(() => {
+                    observer.next()
+                    observer.complete()
+                })
+                .catch(e => {
+                    console.log(e);
+                    observer.error(e)
+                });
+        })
+    }
+
     public withdraw(account): Observable<any> {
 
         let meta;
