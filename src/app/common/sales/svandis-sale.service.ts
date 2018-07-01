@@ -107,6 +107,31 @@ export class SvandisSaleService {
         })
     }
 
+    public addMultipleToWhitelist(ethAddresses, amounts, account): Observable<any> {
+        for(let amount of amounts) {
+            amount = amount * (Math.pow(10, 18));
+        }
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+                .at(this.contractAddress)
+                .then(instance => {
+                    meta = instance;
+                    return meta.addMultipleToWhitelist(ethAddresses, amounts, {
+                        from: account
+                    });
+                })
+                .then(() => {
+                    observer.next()
+                    observer.complete()
+                })
+                .catch(e => {
+                    console.log(e);
+                    observer.error(e)
+                });
+        })
+    }
+
     public removeFromWhitelist(ethAddress, account): Observable<any> {
 
         let meta;

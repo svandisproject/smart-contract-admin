@@ -86,17 +86,29 @@ export class WhitelistComponent extends AccountAwareComponent {
 
     public doExport() {
         let status = '';
+
+        let addresses = [];
+        let amounts = [];
+        let errors = [];
         for (const row of this.importedRows) {
             if (!row[this.importRowAddress] || !row[this.importRowAmount]) {
                 return this.setStatus('Incorrect header names.');
             }
             if (this.web3Service.web3.utils.isAddress(row[this.importRowAddress]) && !isNaN(row[this.importRowAmount])) {
-                this.svandisSaleService.addToWhitelist(row[this.importRowAddress], row[this.importRowAmount], this.account)
-                    .subscribe(() => {
-                        status += row[this.importRowAddress] + ' added to whitelist with ' + row[this.importRowAmount] + ' amount';
-                    }, e => status += 'Error adding to whitelist')
+               addresses.push(row[this.importRowAddress]);
+               amounts.push(row[this.importRowAmount]);
+            } else {
+                errors.push('Could not add ' + row[this.importRowAddress] + ' to whitelist with amount ' + row[this.importRowAmount]);
             }
         }
+        this.svandisSaleService.addMultipleToWhitelist(addresses, amounts, this.account)
+            .subscribe((d) => {
+                let status = 'Accounts have been whitelisted ';
+                for(let error in errors) {
+                    status += error;
+                }
+                this.setStatus(status);
+            }, e => this.setStatus('Error adding accounts to whitelist; see log.'))
         this.setStatus(status);
     }
 
