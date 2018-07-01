@@ -1,5 +1,44 @@
 <div class="container">
     <h1 class="title is-4 is-info help">{{status}}</h1>
+    <h1 class="title">Set presale rate</h1>
+    <form #setPreSaleRateForm="ngForm">
+        <div class="field">
+            <label class="label">Presale Rate</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="preSaleRate"
+                    name="preSaleRate"
+                    class="input"
+                    type="text"
+                    placeholder="0.005"
+                    name="preSaleRate"
+                    required
+                    #preSaleRateModel="ngModel">
+            </p>
+            <div *ngIf="preSaleRateModel.errors && (preSaleRateModel.dirty || preSaleRateModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!preSaleRateModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!preSaleRateModel.errors && (preSaleRateModel.dirty || preSaleRateModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!isNotNumber(preSaleRate)">
+                    Must be a number
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!setPreSaleRateForm.valid"
+                    (click)="setPreSaleRate()"
+                    class="button is-primary">
+                    Send
+                </button>
+            </p>
+        </div>
+    </form>
     <h1 class="title">Set Tier Rates (can be done just once, cannot be undone)</h1>
     <form #setRatesForm="ngForm">
         <div class="field">

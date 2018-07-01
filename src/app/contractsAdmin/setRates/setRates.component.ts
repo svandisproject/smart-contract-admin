@@ -5,17 +5,28 @@ import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-set-rates-component',
-    templateUrl: './setRates.component.html'
+    templateUrl: './setRates.component.html',
+    styleUrls: ['./setRates.component.css']
 })
 export class SetRatesComponent extends AccountAwareComponent {
     public tier1Rate: number;
     public tier2Rate: number;
+    public preSaleRate: number;
 
     constructor(private _ngZone: NgZone,
                 private svandisSaleService: SvandisSaleService,
                 route: ActivatedRoute) {
         super(route);
     }
+
+    public setPreSaleRate = () => {
+        this.setStatus('Initiating transaction... (please wait)');
+
+        this.svandisSaleService.setPreSaleRate(this.preSaleRate, this.account)
+            .subscribe(() => {
+                this.setStatus('Presale rate set to ' + this.preSaleRate);
+            }, e => this.setStatus('Error adding to whitelist; see log.'))
+    };
 
     public setTierRates = () => {
         this.setStatus('Initiating transaction... (please wait)');
