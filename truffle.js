@@ -2,6 +2,7 @@
 require('babel-register')
 
 const HDWalletProvider = require("truffle-hdwallet-provider");
+const LedgerWalletProvider = require("truffle-ledger-provider");
 
 module.exports = {
   networks: {
@@ -12,11 +13,26 @@ module.exports = {
     },
     kovan: {
       provider: function() {
-            return new HDWalletProvider(process.env.mnemonic, process.env.ethereumnode)
+            return new HDWalletProvider(process.env.mnemonic, process.env.ethereumnode, 0)
       },
       network_id: 42,
       gas: 6000000, // High gas to get it through
       gasPrice: 0x05
+    },
+    ledger_kovan: {
+      provider: new LedgerWalletProvider(
+      {
+            //Ledger Options
+            networkId: 42,
+            accountsOffset: 0, // we use the first address
+            askConfirm: false,
+            accountsLength: 2
+      },
+      process.env.ethereumnode
+      ),
+      network_id: 42,
+      gas: 6000000,
+      gasPrice: 0x05
+      }
     }
-  }
 }
