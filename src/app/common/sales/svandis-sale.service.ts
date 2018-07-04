@@ -154,6 +154,29 @@ export class SvandisSaleService {
         })
     }
 
+    public setPreSaleRate(preSaleRate, account): Observable<any> {
+
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+                .at(this.contractAddress)
+                .then(instance => {
+                    meta = instance;
+                    return meta.setPreSaleRate(preSaleRate, {
+                        from: account
+                    });
+                })
+                .then(() => {
+                    observer.next()
+                    observer.complete()
+                })
+                .catch(e => {
+                    console.log(e);
+                    observer.error(e)
+                });
+        })
+    }
+
     public setTiers(tier1Rate, tier2Rate, account): Observable<any> {
 
         let meta;
