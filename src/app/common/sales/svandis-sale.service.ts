@@ -154,15 +154,16 @@ export class SvandisSaleService {
         })
     }
 
-    public setPreSaleRate(preSaleRate, account): Observable<any> {
 
+    public addToCompanyWhitelist(ethAddress, amount, account): Observable<any> {
+        amount = amount * (Math.pow(10, 18));
         let meta;
         return Observable.create(observer => {
             this.Sale
                 .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
-                    return meta.setPreSaleRate(preSaleRate, {
+                    return meta.addToCompanyWhitelist(ethAddress, amount, {
                         from: account
                     });
                 })
@@ -172,6 +173,52 @@ export class SvandisSaleService {
                 })
                 .catch(e => {
                     console.log(e);
+                    observer.error(e)
+                });
+        })
+    }
+
+    public removeFromCompanyWhitelist(ethAddress, account): Observable<any> {
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+                .at(this.contractAddress)
+                .then(instance => {
+                    meta = instance;
+                    return meta.removeFromCompanyWhitelist(ethAddress, {
+                        from: account
+                    });
+                })
+                .then(() => {
+                    observer.next()
+                    observer.complete()
+                })
+                .catch(e => {
+                    console.log(e);
+                    observer.error(e)
+                });
+        })
+    }
+
+    public checkCompanyWhitelisted(ethAddress, account): Observable<any> {
+
+        let meta;
+        return Observable.create(observer => {
+            this.Sale
+                .at(this.contractAddress)
+                .then(instance => {
+                    meta = instance;
+                    return meta.checkCompanyWhitelisted.call(ethAddress, {
+                        from: account
+                    });
+                })
+                .then((value) => {
+                    value = value / (Math.pow(10, 18));
+                    observer.next(value)
+                    observer.complete()
+                })
+                .catch(e => {
+                    console.log(e.ToNumber());
                     observer.error(e)
                 });
         })
