@@ -25,7 +25,7 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
         super(route);
     }
 
-    public addToCompanyWhitelist = () => {
+    public addToCompanyWhitelist() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.addToCompanyWhitelist(this.ethAddressAdd, this.whitelistAmount, this.account)
@@ -34,7 +34,7 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
-    public removeFromCompanyWhitelist = () => {
+    public removeFromCompanyWhitelist() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.removeFromCompanyWhitelist(this.ethAddressRemove, this.account)
@@ -43,7 +43,7 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error removing from whitelist; see log.'))
     };
 
-    public checkCompanyWhitelisted = () => {
+    public checkCompanyWhitelisted() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.checkCompanyWhitelisted(this.ethAddressCheck, this.account)
@@ -57,7 +57,7 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
         return this.web3Service.web3.utils.isAddress(address)
     }
 
-    public isNotNumber = (n) => {
+    public isNotNumber(n: any) {
         return isNaN(n);
     };
 }

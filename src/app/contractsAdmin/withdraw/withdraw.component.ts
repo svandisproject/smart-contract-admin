@@ -20,7 +20,7 @@ export class WithdrawComponent extends AccountAwareComponent {
         super(route);
     }
 
-    setWithdrawWallet = () => {
+    setWithdrawWallet() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.setWithdrawWallet(this.withdrawWallet, this.account)
@@ -29,7 +29,7 @@ export class WithdrawComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error withdrawing the amount.'))
     };
 
-    doWithdraw = () => {
+    doWithdraw() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.withdraw(this.account)
