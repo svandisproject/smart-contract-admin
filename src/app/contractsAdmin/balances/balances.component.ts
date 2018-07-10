@@ -17,7 +17,7 @@ export class BalancesComponent extends AccountAwareComponent {
         super(route)
     }
 
-    public getBalance = () => {
+    public getBalance() {
         this.svandisSaleService.getBalance(this.ethAddressCheck)
             .subscribe(call => {
                 call.then(value => {
@@ -28,7 +28,7 @@ export class BalancesComponent extends AccountAwareComponent {
             })
     };
 
-    public isNotNumber = (n) => {
+    public isNotNumber(n: any) {
         return isNaN(n);
     };
 }

@@ -16,7 +16,7 @@ export class SwitchTiersComponent extends AccountAwareComponent {
         super(route);
     }
 
-    switchTiers = () => {
+    switchTiers() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.switchTiers(this.tier, this.account)
@@ -25,7 +25,7 @@ export class SwitchTiersComponent extends AccountAwareComponent {
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
-    public isNotNumber = (n) => {
+    public isNotNumber(n: any) {
         return isNaN(n);
     };
 }

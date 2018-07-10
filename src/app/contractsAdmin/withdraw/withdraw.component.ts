@@ -17,7 +17,7 @@ export class WithdrawComponent extends AccountAwareComponent {
         super(route);
     }
 
-    doWithdraw = () => {
+    doWithdraw() {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.withdraw(this.account)
