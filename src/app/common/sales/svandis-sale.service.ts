@@ -15,7 +15,7 @@ export class SvandisSaleService {
         abi: svandisSaleArtifacts.abi,
     });
 
-    contractAddress = '0x14a88e5ffd2fc39a7fa5b02821cbc64fe5893b9a';
+    contractAddress = '0xda9295626ea8592c7b1c22edea583c9fc69dac1b';
 
     constructor(private web3Ser: Web3Service) {
         // Bootstrap the MetaCoin abstraction for Use

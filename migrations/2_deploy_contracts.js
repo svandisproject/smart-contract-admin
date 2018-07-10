@@ -1,3 +1,4 @@
+const config = require('../deployment-config.json');
 var Sale = artifacts.require("./Sale.sol");
 
 module.exports = function(deployer) {
@@ -5,6 +6,6 @@ module.exports = function(deployer) {
   deployer.then(function() {
 	return Sale.deployed();
   }).then(function(instance) {
-        return instance.setOwner(process.env.owner);
+        return instance.setOwner(config.owner);
   });
 };
