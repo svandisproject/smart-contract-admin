@@ -24,8 +24,10 @@ export class WithdrawComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.setWithdrawWallet(this.withdrawWallet, this.account)
-            .subscribe(() => {
-                this.setStatus('Withdraw wallet set to ' + this.withdrawWallet);
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Withdraw wallet set to ' + this.withdrawWallet);
+                })
             }, e => this.setStatus('Error withdrawing the amount.'))
     };
 
@@ -33,8 +35,10 @@ export class WithdrawComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.withdraw(this.account)
-            .subscribe(() => {
-                this.setStatus('Amount withdrawn from contract');
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Amount withdrawn from contract');
+                });
             }, e => this.setStatus('Error withdrawing the amount.'))
     };
 

@@ -29,8 +29,10 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.addToCompanyWhitelist(this.ethAddressAdd, this.whitelistAmount, this.account)
-            .subscribe(() => {
-                this.setStatus('Address added to company whitelist with ' + this.whitelistAmount + ' amount');
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Address added to company whitelist with ' + this.whitelistAmount + ' amount');
+                })
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
@@ -38,8 +40,10 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.removeFromCompanyWhitelist(this.ethAddressRemove, this.account)
-            .subscribe(() => {
-                this.setStatus('Address removed from company whitelist!');
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Address removed from company whitelist!');
+                });
             }, e => this.setStatus('Error removing from whitelist; see log.'))
     };
 
@@ -47,8 +51,10 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.checkCompanyWhitelisted(this.ethAddressCheck, this.account)
-            .subscribe((d) => {
-                this.setStatus('Account whitelist amount is ' + d);
+            .subscribe((call) => {
+                call.then((value) => {
+                    this.setStatus('Account whitelist amount is ' + value);
+                });
             }, e => this.setStatus('Error checking whitelist; see log.'))
     };
 

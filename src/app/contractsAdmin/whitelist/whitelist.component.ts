@@ -38,8 +38,10 @@ export class WhitelistComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.addToWhitelist(this.ethAddressAdd, this.whitelistAmount, this.account)
-            .subscribe(() => {
-                this.setStatus('Address added to whitelist with ' + this.whitelistAmount + ' amount');
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Address added to whitelist with ' + this.whitelistAmount + ' amount');
+                });
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
@@ -47,8 +49,10 @@ export class WhitelistComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.removeFromWhitelist(this.ethAddressRemove, this.account)
-            .subscribe(() => {
-                this.setStatus('Address removed from whitelist!');
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Address removed from whitelist!');
+                });
             }, e => this.setStatus('Error removing from whitelist; see log.'))
     };
 
@@ -56,8 +60,10 @@ export class WhitelistComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.checkWhitelisted(this.ethAddressCheck, this.account)
-            .subscribe((d) => {
-                this.setStatus('Account whitelist amount is ' + d);
+            .subscribe((call) => {
+                call.then((value) => {
+                    this.setStatus('Account whitelist amount is ' + value);
+                });
             }, e => this.setStatus('Error checking whitelist; see log.'))
     };
 
@@ -102,12 +108,14 @@ export class WhitelistComponent extends AccountAwareComponent {
             }
         }
         this.svandisSaleService.addMultipleToWhitelist(addresses, amounts, this.account)
-            .subscribe((d) => {
-                let status = 'Accounts have been whitelisted ';
-                for(let error in errors) {
-                    status += error;
-                }
-                this.setStatus(status);
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    let status = 'Accounts have been whitelisted ';
+                    for(let error in errors) {
+                        status += error;
+                    }
+                    this.setStatus(status);
+                });
             }, e => this.setStatus('Error adding accounts to whitelist; see log.'))
         this.setStatus(status);
     }

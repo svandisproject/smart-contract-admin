@@ -23,8 +23,10 @@ export class SetRatesComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.setPreSaleRate(this.preSaleRate, this.account)
-            .subscribe(() => {
-                this.setStatus('Presale rate set to ' + this.preSaleRate);
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Presale rate set to ' + this.preSaleRate);
+                });
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
@@ -32,8 +34,10 @@ export class SetRatesComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.setTiers(this.tier1Rate, this.tier2Rate, this.account)
-            .subscribe(() => {
-                this.setStatus('Tier 1 rate set to ' + this.tier1Rate + ', Tier 2 rate set to ' + this.tier2Rate);
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Tier 1 rate set to ' + this.tier1Rate + ', Tier 2 rate set to ' + this.tier2Rate);
+                });
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 

@@ -20,8 +20,10 @@ export class SwitchTiersComponent extends AccountAwareComponent {
         this.setStatus('Initiating transaction... (please wait)');
 
         this.svandisSaleService.switchTiers(this.tier, this.account)
-            .subscribe(() => {
-                this.setStatus('Current tier set to ' + this.tier);
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Current tier set to ' + this.tier);
+                });
             }, e => this.setStatus('Error adding to whitelist; see log.'))
     };
 
