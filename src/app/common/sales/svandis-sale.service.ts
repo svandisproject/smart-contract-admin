@@ -155,7 +155,8 @@ export class SvandisSaleService {
     }
 
     public setTiers(tier1Rate, tier2Rate, account): Observable<any> {
-
+        tier1Rate = tier1Rate * (Math.pow(10, 18));
+        tier2Rate = tier2Rate * (Math.pow(10, 18));
         let meta;
         return Observable.create(observer => {
             this.Sale
