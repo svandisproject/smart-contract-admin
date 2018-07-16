@@ -87,35 +87,90 @@ export class SvandisSaleService {
     public addToWhitelist(ethAddress, amount, account): Observable<any> {
         amount = amount * (Math.pow(10, 18));
         let meta;
-        return Observable.create(observer => {
-            this.Sale
-                .at(this.contractAddress)
-                .then(instance => {
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
                     meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
                     return meta.addToWhitelist(ethAddress, amount, {
                         from: account
                     });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .then(() => {
-                    observer.next()
-                    observer.complete()
+            );
+    }
+
+    public addMultipleToWhitelist(ethAddresses, amounts, account): Observable<any> {
+        for(let amount of amounts) {
+            amount = amount * (Math.pow(10, 18));
+        }
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.addMultipleToWhitelist(ethAddresses, amounts, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .catch(e => {
-                    console.log(e);
-                    observer.error(e)
-                });
-        })
+            );
     }
 
     public removeFromWhitelist(ethAddress, account): Observable<any> {
 
         let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.removeFromWhitelist(ethAddress, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
+
+    public checkWhitelisted(ethAddress, account): Observable<any> {
+
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.checkWhitelisted.call(ethAddress, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
+
+    public addToCompanyWhitelist(ethAddress, amount, account): Observable<any> {
+        amount = amount * (Math.pow(10, 18));
+        let meta;
         return Observable.create(observer => {
             this.Sale
                 .at(this.contractAddress)
                 .then(instance => {
                     meta = instance;
-                    return meta.removeFromWhitelist(ethAddress, {
+                    return meta.addToCompanyWhitelist(ethAddress, amount, {
                         from: account
                     });
                 })
@@ -130,98 +185,136 @@ export class SvandisSaleService {
         })
     }
 
-    public checkWhitelisted(ethAddress, account): Observable<any> {
-
+    public removeFromCompanyWhitelist(ethAddress, account): Observable<any> {
         let meta;
-        return Observable.create(observer => {
-            this.Sale
-                .at(this.contractAddress)
-                .then(instance => {
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
                     meta = instance;
-                    return meta.checkWhitelisted.call(ethAddress, {
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.removeFromCompanyWhitelist(ethAddress, {
                         from: account
                     });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .then((value) => {
-                    value = value / (Math.pow(10, 18));
-                    observer.next(value)
-                    observer.complete()
+            );
+    }
+
+    public checkCompanyWhitelisted(ethAddress, account): Observable<any> {
+
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.checkCompanyWhitelisted.call(ethAddress, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .catch(e => {
-                    console.log(e.ToNumber());
-                    observer.error(e)
-                });
-        })
+            );
+    }
+
+    public setPreSaleRate(rate, account): Observable<any> {
+
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.setPreSaleRate(rate, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
     }
 
     public setTiers(tier1Rate, tier2Rate, account): Observable<any> {
         tier1Rate = tier1Rate * (Math.pow(10, 18));
         tier2Rate = tier2Rate * (Math.pow(10, 18));
         let meta;
-        return Observable.create(observer => {
-            this.Sale
-                .at(this.contractAddress)
-                .then(instance => {
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
                     meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
                     return meta.setTiers(tier1Rate, tier2Rate, {
                         from: account
                     });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .then(() => {
-                    observer.next()
-                    observer.complete()
-                })
-                .catch(e => {
-                    console.log(e);
-                    observer.error(e)
-                });
-        })
+            );
     }
 
     public switchTiers(tier, account): Observable<any> {
 
         let meta;
-        return Observable.create(observer => {
-            this.Sale
-                .at(this.contractAddress)
-                .then(instance => {
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
                     meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
                     return meta.switchTiers(tier, {
                         from: account
                     });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .then(() => {
-                    observer.next()
-                    observer.complete()
+            );
+    }
+
+    public setWithdrawWallet(withdrawWallet, account): Observable<any> {
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.setWithdrawWallet(withdrawWallet, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .catch(e => {
-                    console.log(e);
-                    observer.error(e)
-                });
-        })
+            );
     }
 
     public withdraw(account): Observable<any> {
 
         let meta;
-        return Observable.create(observer => {
-            this.Sale
-                .at(this.contractAddress)
-                .then(instance => {
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
                     meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
                     return meta.withdraw({
                         from: account
                     });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
                 })
-                .then(() => {
-                    observer.next()
-                    observer.complete()
-                })
-                .catch(e => {
-                    console.log(e);
-                    observer.error(e)
-                });
-        })
+            );
     }
 
     

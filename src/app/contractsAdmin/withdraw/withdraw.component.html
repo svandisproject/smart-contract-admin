@@ -1,4 +1,42 @@
 <div class="container">
+    <h1 class="title">Set withdraw Wallet</h1>
+    <form #setWithdrawWalletForm="ngForm">
+        <div class="field">
+            <label class="label">Address</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="withdrawWallet"
+                    name="withdrawWallet"
+                    class="input"
+                    type="text"
+                    placeholder="0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"
+                    required
+                    #withdrawWalletModel="ngModel">
+            </p>
+            <div *ngIf="withdrawWalletModel.errors && (withdrawWalletModel.dirty || withdrawWalletModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!withdrawWalletModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+            <div *ngIf="!withdrawWalletModel.errors && (withdrawWalletModel.dirty || withdrawWalletModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="isAddress(withdrawWallet)">
+                    Must be ethereum address
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!setWithdrawWalletForm.form.valid || !isAddress(withdrawWallet)"
+                    (click)="setWithdrawWallet()"
+                    class="button is-primary">
+                    Send
+                </button>
+            </p>
+        </div>
+    </form>
     <h1 class="title is-4 is-info help">{{status}}</h1>
     <div class="field is-grouped">
         <p class="control">

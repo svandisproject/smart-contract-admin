@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {ContractAdminRouteConfig} from './ContractsAdminRouteConfig';
+import {CompanyWhitelistComponent} from './companyWhitelist/companyWhitelist.component';
 import {WhitelistComponent} from './whitelist/whitelist.component';
 import {SwitchTiersComponent} from './switchTiers/switchTiers.component';
 import {WithdrawComponent} from './withdraw/withdraw.component';
@@ -17,8 +18,9 @@ import {FormsModule} from '@angular/forms';
         RouterModule.forChild(ContractAdminRouteConfig)
     ],
     declarations: [
-        WhitelistComponent,
         HomeComponent,
+        WhitelistComponent,
+        CompanyWhitelistComponent,
         SwitchTiersComponent,
         SetRatesComponent,
         BalancesComponent,
