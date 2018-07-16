@@ -2,7 +2,7 @@
 require('babel-register')
 
 const HDWalletProvider = require("truffle-hdwallet-provider");
-const LedgerWalletProvider = require("truffle-ledger-provider");
+//const LedgerWalletProvider = require("truffle-ledger-provider");
 const config = require('./deployment-config.json');
 
 module.exports = {
@@ -19,7 +19,8 @@ module.exports = {
       network_id: 42,
       gas: 6000000, // High gas to get it through
       gasPrice: 0x05
-    },
+    } 
+   /* },
     ledger_kovan: {
       provider: new LedgerWalletProvider(
       {
@@ -34,6 +35,6 @@ module.exports = {
       network_id: 42,
       gas: 6000000,
       gasPrice: 0x05
-      }
+      }*/
     }
 }
