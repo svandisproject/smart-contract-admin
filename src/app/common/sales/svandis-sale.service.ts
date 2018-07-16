@@ -15,7 +15,7 @@ export class SvandisSaleService {
         abi: svandisSaleArtifacts.abi,
     });
 
-    contractAddress = '0x14a88e5ffd2fc39a7fa5b02821cbc64fe5893b9a';
+    contractAddress = '0xdefebf1a38df233ed18a1bb5c0924622d394e0d0';
 
     constructor(private web3Ser: Web3Service) {
         // Bootstrap the MetaCoin abstraction for Use
@@ -162,7 +162,6 @@ export class SvandisSaleService {
             );
     }
 
-
     public addToCompanyWhitelist(ethAddress, amount, account): Observable<any> {
         amount = amount * (Math.pow(10, 18));
         let meta;
@@ -243,7 +242,8 @@ export class SvandisSaleService {
     }
 
     public setTiers(tier1Rate, tier2Rate, account): Observable<any> {
-
+        tier1Rate = tier1Rate * (Math.pow(10, 18));
+        tier2Rate = tier2Rate * (Math.pow(10, 18));
         let meta;
         return fromPromise(this.Sale.at(this.contractAddress))
             .pipe(
