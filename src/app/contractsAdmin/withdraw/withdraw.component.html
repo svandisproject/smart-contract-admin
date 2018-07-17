@@ -1,4 +1,46 @@
 <div class="container">
+    <h1 class="title">Buy Tokens</h1>
+    <form #doBuytokenForm="ngForm">
+        <div class="field">
+            <label class="label">Amount of Eth you wish to contribute</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="buyAmount"
+                    name="buyAmount"
+                    class="input"
+                    type="text"
+                    placeholder="0.5"
+                    required
+                    #buyAmountModel="ngModel">
+            </p>
+            <div *ngIf="buyAmountModel.errors && (buyAmountModel.dirty || buyAmountModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!buyAmountModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!doBuytokenForm.form.valid"
+                    (click)="doBuyTokens()"
+                    class="button is-primary">
+                    Buy
+                </button>
+            </p>
+        </div>
+    </form>
+    <h1 class="title">Claim Company Tokens Ownership</h1>
+    <div class="field is-grouped">
+        <p class="control">
+            <button
+                (click)="doClaimOwnership()"
+                class="button is-primary">
+                Claim Tokens
+            </button>
+        </p>
+    </div>
     <h1 class="title">Set withdraw Wallet</h1>
     <form #setWithdrawWalletForm="ngForm">
         <div class="field">
@@ -37,14 +79,36 @@
             </p>
         </div>
     </form>
-    <h1 class="title is-4 is-info help">{{status}}</h1>
-    <div class="field is-grouped">
-        <p class="control">
-            <button
-                (click)="doWithdraw()"
-                class="button is-primary">
-                Withdraw
-            </button>
-        </p>
-    </div>
+    <h1 class="title">Manually Withdraw Stuck Ether</h1>
+    <form #doWithdrawForm="ngForm">
+        <div class="field">
+            <label class="label">Amount of Wei to Withdraw</label>
+            <p class="control">
+                <input
+                    [(ngModel)]="withdrawAmount"
+                    name="withdrawAmount"
+                    class="input"
+                    type="text"
+                    placeholder="100"
+                    required
+                    #withdrawAmountModel="ngModel">
+            </p>
+            <div *ngIf="withdrawAmountModel.errors && (withdrawAmountModel.dirty || withdrawAmountModel.touched)"
+                 class="help is-danger">
+                <p [hidden]="!withdrawAmountModel.errors.required">
+                    This field is required
+                </p>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <p class="control">
+                <button
+                    [disabled]="!doWithdrawForm.form.valid"
+                    (click)="doWithdraw()"
+                    class="button is-primary">
+                    Withdraw
+                </button>
+            </p>
+        </div>
+    </form>
 </div>
