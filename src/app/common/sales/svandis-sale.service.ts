@@ -223,7 +223,7 @@ export class SvandisSaleService {
     }
 
     public setPreSaleRate(rate, account): Observable<any> {
-
+        rate = rate * (Math.pow(10, 18));
         let meta;
         return fromPromise(this.Sale.at(this.contractAddress))
             .pipe(
@@ -298,7 +298,7 @@ export class SvandisSaleService {
             );
     }
 
-    public withdraw(account): Observable<any> {
+    public withdraw(amount, account): Observable<any> {
 
         let meta;
         return fromPromise(this.Sale.at(this.contractAddress))
@@ -306,7 +306,48 @@ export class SvandisSaleService {
                 map((instance) => {
                     meta = instance;
                     // we use call here so the call doesn't try and write, making it free
-                    return meta.withdraw({
+                    return meta.withdraw(amount, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
+
+
+    public buyTokens(buyAmount, account): Observable<any> {
+
+        let meta;
+        let ethValue = buyAmount * (Math.pow(10, 18));
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.buyTokens({
+                        from: account, value: ethValue
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
+
+
+    public claimOwnership(account): Observable<any> {
+
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.takeCompanyTokensOwnership({
                         from: account
                     });
                 }),

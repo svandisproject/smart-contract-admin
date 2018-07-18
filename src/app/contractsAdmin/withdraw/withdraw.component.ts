@@ -11,6 +11,8 @@ import {Web3Service} from '../../common/sales/web3.service';
 })
 export class WithdrawComponent extends AccountAwareComponent {
     public withdrawWallet: string;
+    public withdrawAmount: number;
+    public buyAmount: number;
     
 
     constructor(private _ngZone: NgZone,
@@ -34,12 +36,35 @@ export class WithdrawComponent extends AccountAwareComponent {
     doWithdraw() {
         this.setStatus('Initiating transaction... (please wait)');
 
-        this.svandisSaleService.withdraw(this.account)
+        this.svandisSaleService.withdraw(this.withdrawAmount, this.account)
             .subscribe((transaction) => {
                 transaction.then(() => {
                     this.setStatus('Amount withdrawn from contract');
                 });
             }, e => this.setStatus('Error withdrawing the amount.'))
+    };
+
+    doBuyTokens() {
+        this.setStatus('Initiating transaction... (please wait)');
+
+        this.svandisSaleService.buyTokens(this.buyAmount, this.account)
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Tokens purchased');
+                });
+            }, e => this.setStatus('Error buying tokens'))
+    };
+
+
+    doClaimOwnership() {
+        this.setStatus('Initiating transaction... (please wait)');
+
+        this.svandisSaleService.claimOwnership(this.account)
+            .subscribe((transaction) => {
+                transaction.then(() => {
+                    this.setStatus('Company tokens claimed');
+                });
+            }, e => this.setStatus('Error claiming tokens'))
     };
 
     public isAddress(address: string): boolean {
