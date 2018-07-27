@@ -97,9 +97,9 @@ contract('Svandis Sale', function ([owner, wallet, buyer1, buyer2, buyer3, buyer
 
 
 	it('should reject call to add multiple with mismatching array lengths', async function() {
-		var newMultiBuyerArray = multiBuyerArray;
-		newMultiBuyerArray.push(anyAddress);
-		await sale.addMultipleToWhitelist(newMultiBuyerArray, multiBuyerValue, {from: owner}).should.be.rejectedWith('revert');
+		multiBuyerArray.push(anyAddress);
+		await sale.addMultipleToWhitelist(multiBuyerArray, multiBuyerValue, {from: owner}).should.be.rejectedWith('revert');
+		multiBuyerArray.pop();
 	});
 
 
@@ -154,6 +154,15 @@ contract('Svandis Sale', function ([owner, wallet, buyer1, buyer2, buyer3, buyer
 
 		await sale.addToCompanyWhitelist(presaleInvestor1, presaleInvestor1Allowed, {from: owner}).should.be.fulfilled;
 		await sale.addToCompanyWhitelist(presaleInvestor2, presaleInvestor2Allowed, {from: owner}).should.be.fulfilled;
+	});
+
+
+	it('should allow owner address to add multiple to company whitelist', async function() {
+		await sale.addMultipleToCompanyWhitelist(multiBuyerArray, multiBuyerValue, {from: owner}).should.be.fulfilled;
+
+		(await sale.checkCompanyWhitelisted(buyer2, {from: owner})).should.be.bignumber.equal(buyer2Allowed);
+		(await sale.checkCompanyWhitelisted(buyer3, {from: owner})).should.be.bignumber.equal(buyer3Allowed);
+		(await sale.checkCompanyWhitelisted(buyer4, {from: owner})).should.be.bignumber.equal(buyer4Allowed);
 	});
 
 

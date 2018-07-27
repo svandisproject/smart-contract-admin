@@ -185,6 +185,27 @@ export class SvandisSaleService {
         })
     }
 
+    public addMultipleToCompanyWhitelist(ethAddresses, amounts, account): Observable<any> {
+        for(let amount of amounts) {
+            amount = amount * (Math.pow(10, 18));
+        }
+        let meta;
+        return fromPromise(this.Sale.at(this.contractAddress))
+            .pipe(
+                map((instance) => {
+                    meta = instance;
+                    // we use call here so the call doesn't try and write, making it free
+                    return meta.addMultipleToCompanyWhitelist(ethAddresses, amounts, {
+                        from: account
+                    });
+                }),
+                catchError((err) => {
+                    console.log(err);
+                    return of(err);
+                })
+            );
+    }
+
     public removeFromCompanyWhitelist(ethAddress, account): Observable<any> {
         let meta;
         return fromPromise(this.Sale.at(this.contractAddress))
