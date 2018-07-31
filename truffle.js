@@ -14,7 +14,7 @@ module.exports = {
     },
     kovan: {
       provider: function() {
-            return new HDWalletProvider(config.mnemonic, config.ethereumnode, 0)
+            return new HDWalletProvider(config.mnemonic, config.ethereumnode,1)
       },
       network_id: 42,
       gas: 6000000, // High gas to get it through
