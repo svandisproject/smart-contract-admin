@@ -104,9 +104,7 @@ export class SvandisSaleService {
     }
 
     public addMultipleToWhitelist(ethAddresses, amounts, account): Observable<any> {
-        for(let amount of amounts) {
-            amount = amount * (Math.pow(10, 18));
-        }
+  
         let meta;
         return fromPromise(this.Sale.at(this.contractAddress))
             .pipe(

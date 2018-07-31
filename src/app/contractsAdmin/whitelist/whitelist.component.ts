@@ -102,7 +102,7 @@ export class WhitelistComponent extends AccountAwareComponent {
             }
             if (this.web3Service.web3.utils.isAddress(row[this.importRowAddress]) && !isNaN(row[this.importRowAmount])) {
                addresses.push(row[this.importRowAddress]);
-               amounts.push(row[this.importRowAmount]);
+               amounts.push(row[this.importRowAmount] * (Math.pow(10, 18)));
             } else {
                 errors.push('Could not add ' + row[this.importRowAddress] + ' to whitelist with amount ' + row[this.importRowAmount]);
             }
