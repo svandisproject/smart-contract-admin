@@ -62,7 +62,7 @@ export class CompanyWhitelistComponent extends AccountAwareComponent {
         this.svandisSaleService.checkCompanyWhitelisted(this.ethAddressCheck, this.account)
             .subscribe((call) => {
                 call.then((value) => {
-                    this.setStatus('Account whitelist amount is ' + value);
+                    this.setStatus('Account company whitelist amount is ' + (value / (Math.pow(10, 18))));
                 });
             }, e => this.setStatus('Error checking whitelist; see log.'))
     };
